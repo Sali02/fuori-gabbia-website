@@ -1,14 +1,7 @@
 "use strict";
 
 var button = document.querySelector('.submit');
-//is just a test to see if i unterstood something with the git bash
-//new line
-//newwww line
-//i just added a new line
-//new line
-//a new line just added
 
-//as easy as that
 button.addEventListener('click', getData);
 
 async function getData() {
@@ -75,26 +68,35 @@ function storeData(incomeStatement, balanceSheetStatement, cashFlowStatement) {
     }
 }*/
 
-function calcolaPercentuale(fatturatoPer, utilePer, equityPer, cashflowPer) {
-    for (let i = 4; i > 0; i--) {
+function calcolaPercentuale(fatturato, utile, equity, cashFlow) {
 
-        const fatturatoRatio = (fatturatoPer[i]- fatturatoPer[i - 1]) / fatturatoPer[i];
-        const utileRatio = (utilePer[i] - utilePer[i - 1]) * utilePer[i];
-        const equityRatio = (equityPer[i] - equityPer[i - 1]) * equityPer[i];
-        const cashflowRatio = (cashflowPer[i] - cashflowPer[i -1]) * cashflowPer[i];
+    var revenuePercentuale = new Array();
+    var netIncomePercentuale = new Array();
+    var equityPercentuale = new Array();
+    var cashFlowPercentuale = new Array();
 
-        fatturatoPer[i] = parseFloat(fatturatoRatio.toFixed(2));
-        utilePer[i] = parseFloat(utileRatio.toFixed(2));
-        equityPer[i] = parseFloat(equityRatio.toFixed(2));
-        cashflowPer[i] = parseFloat(cashflowRatio.toFixed(2));
+    for (let i = 0; i < 4; i++) {
+
+        const fatturatoRatio = ((fatturato[i]/fatturato[i + 1])*100)-100;
+        const utileRatio = ((utile[i]/utile[i + 1])*100)-100;
+        const equityRatio = ((equity[i]/equity[i + 1])*100)-100;
+        const cashflowRatio = ((cashFlow[i]/cashFlow[i + 1])*100)-100;
+
+        revenuePercentuale[i] = parseFloat(fatturatoRatio.toFixed(2));
+        netIncomePercentuale[i] = parseFloat(utileRatio.toFixed(2));
+        equityPercentuale[i] = parseFloat(equityRatio.toFixed(2));
+        cashFlowPercentuale[i] = parseFloat(cashflowRatio.toFixed(2));
+
     }
 
-    for (let i = 4; i >= 0; i--) {
-        alert('seconda' + typeof fatturatoPer[i]);
-        console.log('fatturato %: ' + fatturatoPer[i]);
-        console.log('utile %: ' + utilePer[i]);
-        console.log('equity %: ' + equityPer[i]);
-        console.log('cashflow %: ' + cashflowPer[i]);
+    for (let i = 0; i < 4; i++) {
+
+        console.log('fatturato %: ' + revenuePercentuale[i]);
+        console.log('utile %: ' + netIncomePercentuale[i]);
+        console.log('equity %: ' + equityPercentuale[i]);
+        console.log('cashflow %: ' + cashFlowPercentuale[i]);
+
     }
+
 }
 
