@@ -7,6 +7,8 @@ var button = document.querySelector('.submit');
 //i just added a new line
 //new line
 //a new line just added
+
+//as easy as that
 button.addEventListener('click', getData);
 
 async function getData() {
