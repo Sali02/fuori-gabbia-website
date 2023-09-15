@@ -71,6 +71,13 @@ function calcolaPercentuale(fatturato, utile, equity, cashFlow) {
     var equityPercentuale = new Array();
     var cashFlowPercentuale = new Array();
 
+    //Values that calculate and store the avarage growth in percentage
+
+    let revenueGrowth = 0;
+    let netIncomeGrowth = 0;
+    let equityGrowth = 0;
+    let cashFlowGrowth = 0;
+
     for (let i = 0; i < 4; i++) {
 
         const fatturatoRatio = ((fatturato[i]/fatturato[i + 1])*100)-100;
@@ -93,6 +100,27 @@ function calcolaPercentuale(fatturato, utile, equity, cashFlow) {
         console.log('cashflow %: ' + cashFlowPercentuale[i]);
 
     }
+
+    //fa la crescita media negli ultimi 5 anni
+
+    for (let i = 0; i < revenuePercentuale.length; i++) {
+
+        revenueGrowth += revenuePercentuale[i];
+        netIncomeGrowth += netIncomePercentuale[i];
+        equityGrowth += equityPercentuale[i];
+        cashFlowGrowth += cashFlowPercentuale[i];
+
+    }
+
+    revenueGrowth = revenueGrowth / revenuePercentuale.length;
+    netIncomeGrowth = netIncomeGrowth / netIncomePercentuale.length;
+    equityGrowth = equityGrowth / equityPercentuale.length;
+    cashFlowGrowth = cashFlowGrowth / cashFlowPercentuale.length;
+
+    console.log("is the avarage growth of the revenue more than 15%? " + revenueGrowth);
+    console.log("is the avarage growth of the net income more than 15%? " + netIncomeGrowth);
+    console.log("is the avarage growth of the equity more than 15%? " + equityGrowth);
+    console.log("is the avarage growth of the cash flow more than 15%? " + cashFlowGrowth);
 
 }
 
