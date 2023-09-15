@@ -1,0 +1,34 @@
+.ticker-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.ticker-text {
+  margin-bottom: 1.5rem;
+}
+
+#stock-ticker {
+  margin-top: 1.5rem;
+  width: 50%;
+  height: 1.8rem;
+  font-size: 1rem;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  box-shadow: 2px 3px 0px 0px rgba(0, 0, 0, 0.4);
+}
+
+.submit {
+  margin-top: 1.5rem;
+  padding: 0.5rem 2.5rem;
+  font-size: 1rem;
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+.submit:active {
+  transform: scale(0.93);
+}

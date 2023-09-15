@@ -1,0 +1,131 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: roboto, sans-serif;
+  list-style: none;
+}
+
+a {
+    color: white;
+    text-decoration: none !important;
+}
+
+.start-background {
+  background: url("../immagini/logo_ufficiale.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 12rem;
+  width: 100%;
+  z-index: 100;
+  margin-top: 6rem;
+}
+
+.backdrop {
+  display: none;
+  position: fixed;
+  opacity: 0.9;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+
+.image-of-link {
+  height: 5rem;
+  width: 5rem;
+  position: absolute;
+  top: 0.7rem;
+  left: 1rem;
+}
+
+.toggle-button {
+  width: 3rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding-top: 0;
+  padding-bottom: 0;
+  vertical-align: middle;
+  position: absolute;
+  top: 0.7rem;
+  right: 1rem;
+}
+
+
+
+.toggle-button__bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: black;
+}
+
+.toggle-button.active .toggle-button__bar:nth-child(2){
+  opacity: 0;
+}
+
+.toggle-button.active .toggle-button__bar:nth-child(1){
+  transform: translateY(8px) rotate(45deg);
+}
+
+.toggle-button.active .toggle-button__bar:nth-child(3){
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.first-text {
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2.2rem;
+  margin-left: 0.6rem;
+  margin-right: 0.6rem;
+  font-size: 1.7rem;
+}
+
+
+
+.mobile-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  z-index: 100;
+  left: -100%;
+  top: 0;
+  gap: 0;
+  flex-direction: column;
+  background-color: rgb(43, 43, 43);
+  color: white;
+  width: 80%;
+  height: 100%;
+  text-align: center;
+  transition: 0.4s;
+}
+
+
+.mobile-nav__items {
+  
+}
+
+.mobile-nav.active {
+  left: 0;
+}
+
+.mobile-nav__item {
+  margin: 1rem 0;
+}
+
+.mobile-nav__item a {
+  font-size: 1.5rem;
+}
