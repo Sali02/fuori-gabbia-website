@@ -22,6 +22,8 @@ async function getData() {
     console.log(incomeStatement, balanceSheet, cashFlow);
     
     storeData(incomeStatement, balanceSheet, cashFlow);
+
+    
 }
 
 function storeData(incomeStatement, balanceSheetStatement, cashFlowStatement) {
