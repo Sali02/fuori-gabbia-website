@@ -5,13 +5,17 @@ var button = document.querySelector('.submit');
 button.addEventListener('click', getData);
 
 async function getData() {
+    //In this function I send a fetch and get the data
+
     var apiKey = 'd59700f7597b82cb0fef69669f48b8ec';
     var stockTicker = document.querySelector('#stock-ticker').value;
     console.log(stockTicker);
-    alert('ciao');
     const responseIncomeStatement = await fetch('https://financialmodelingprep.com/api/v3/income-statement/' + stockTicker + '?apikey=' + apiKey);
     const responseBalanceSheet = await fetch('https://financialmodelingprep.com/api/v3/balance-sheet-statement/' + stockTicker + '?apikey=' + apiKey);
     const responseCashFlow = await fetch('https://financialmodelingprep.com/api/v3/cash-flow-statement/' + stockTicker + '?apikey=' + apiKey);
+    
+    //after I got a response with the data, I made a json to get the data
+
     const incomeStatement = await responseIncomeStatement.json();
     const balanceSheet = await responseBalanceSheet.json();
     const cashFlow = await responseCashFlow.json();
@@ -21,6 +25,9 @@ async function getData() {
 }
 
 function storeData(incomeStatement, balanceSheetStatement, cashFlowStatement) {
+    
+    //Created arrays to store the values that i'm interested in
+
     let fatturato = new Array();
     let utile = new Array();
     let assetTotali = new Array();
@@ -51,24 +58,13 @@ function storeData(incomeStatement, balanceSheetStatement, cashFlowStatement) {
     calcolaPercentuale(fatturato, utile, equity, cashFlow);
 }
 
-/*function calcolaPercentuale(fatturatoPer, utilePer, equityPer, cashflowPer) {
-    for(let i = 0; i < 4; i++) {
-        fatturatoPer[i] = (((fatturatoPer[i+1]/fatturatoPer[i])/fatturatoPer[i])*100);
-        utilePer[i] = ((fatturatoPer[i+1]/fatturatoPer[i])/fatturatoPer[i])*100;
-        equityPer[i] = ((fatturatoPer[i+1]/fatturatoPer[i])/fatturatoPer[i])*100;       
-        cashflowPer[i] = ((fatturatoPer[i+1]/fatturatoPer[i])/fatturatoPer[i])*100;
-    }
-
-    for(let i = 0; i < 4; i++){
-        alert('seconda' + typeof fatturatoPer[i]);
-        console.log('fatturato: ' + fatturatoPer[i]);
-        console.log('utile: ' + utilePer[i]);
-        console.log('equity: ' + equityPer[i]);
-        console.log('cashflow: ' + cashflowPer[i]);
-    }
-}*/
 
 function calcolaPercentuale(fatturato, utile, equity, cashFlow) {
+
+    //This function calculate the percentages of increasing or decreasin year over year
+    // !! i = 0 is the year 2022, and then goes down !!
+
+    //New arrays where to store the percentages
 
     var revenuePercentuale = new Array();
     var netIncomePercentuale = new Array();
