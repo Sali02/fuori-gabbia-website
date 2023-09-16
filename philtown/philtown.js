@@ -25,7 +25,7 @@ async function getData() {
     const cashFlow = await responseCashFlow.json();
     console.log(incomeStatement, balanceSheet, cashFlow);
     
-    
+}
 
 
 
