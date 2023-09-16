@@ -2,9 +2,13 @@
 
 var button = document.querySelector('.submit');
 
+
+
 button.addEventListener('click', getData);
 
 async function getData() {
+
+
     //In this function I send a fetch and get the data
 
     var apiKey = 'd59700f7597b82cb0fef69669f48b8ec';
@@ -21,12 +25,9 @@ async function getData() {
     const cashFlow = await responseCashFlow.json();
     console.log(incomeStatement, balanceSheet, cashFlow);
     
-    storeData(incomeStatement, balanceSheet, cashFlow);
+    
 
-    //redirecting to the loading-bar
 
-    location.assign("http://127.0.0.1:5500/philtown/loading-bar.html");    
-}
 
 function storeData(incomeStatement, balanceSheetStatement, cashFlowStatement) {
     
@@ -126,5 +127,6 @@ function calcolaPercentuale(fatturato, utile, equity, cashFlow) {
     console.log("is the avarage growth of the equity more than 15%? " + equityGrowth);
     console.log("is the avarage growth of the cash flow more than 15%? " + cashFlowGrowth);
 
+    
 }
 
