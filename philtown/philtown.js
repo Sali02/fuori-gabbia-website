@@ -23,7 +23,9 @@ async function getData() {
     
     storeData(incomeStatement, balanceSheet, cashFlow);
 
-    
+    //redirecting to the loading-bar
+
+    location.assign("http://127.0.0.1:5500/philtown/loading-bar.html");    
 }
 
 function storeData(incomeStatement, balanceSheetStatement, cashFlowStatement) {
