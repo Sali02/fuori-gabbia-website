@@ -2,13 +2,12 @@
 
 var button = document.querySelector('.submit');
 
-
-
 button.addEventListener('click', getData);
+
 
 async function getData() {
 
-
+    alert('getdata')
     //In this function I send a fetch and get the data
 
     var apiKey = 'd59700f7597b82cb0fef69669f48b8ec';
@@ -25,14 +24,13 @@ async function getData() {
     const cashFlow = await responseCashFlow.json();
     console.log(incomeStatement, balanceSheet, cashFlow);
     
-    
-    
+    storeData(incomeStatement, balanceSheet, cashFlow);
 }
 
 
 
 function storeData(incomeStatement, balanceSheetStatement, cashFlowStatement) {
-    
+    alert('store data');
     //Created arrays to store the values that i'm interested in
 
     let fatturato = new Array();
@@ -72,7 +70,7 @@ function calcolaPercentuale(fatturato, utile, equity, cashFlow) {
     // !! i = 0 is the year 2022, and then goes down !!
 
     //New arrays where to store the percentages
-
+    alert('calcola percentuale');
     var revenuePercentuale = new Array();
     var netIncomePercentuale = new Array();
     var equityPercentuale = new Array();
@@ -118,7 +116,7 @@ function calcolaPercentuale(fatturato, utile, equity, cashFlow) {
         cashFlowGrowth += cashFlowPercentuale[i];
 
     }
-
+    alert('calcola percentuale 2');
     revenueGrowth = revenueGrowth / revenuePercentuale.length;
     netIncomeGrowth = netIncomeGrowth / netIncomePercentuale.length;
     equityGrowth = equityGrowth / equityPercentuale.length;
@@ -129,6 +127,78 @@ function calcolaPercentuale(fatturato, utile, equity, cashFlow) {
     console.log("is the avarage growth of the equity more than 15%? " + equityGrowth);
     console.log("is the avarage growth of the cash flow more than 15%? " + cashFlowGrowth);
 
+    displayData(revenueGrowth, netIncomeGrowth, equityGrowth, cashFlowGrowth);
+}
+
+function displayData(revenueGrowth, netIncomeGrowth, equityGrowth, cashFlowGrowth) {
     
+    revenueGrowth = revenueGrowth.toFixed(2);
+    netIncomeGrowth = netIncomeGrowth.toFixed(2);
+    equityGrowth = equityGrowth.toFixed(2);
+    cashFlowGrowth = cashFlowGrowth.toFixed(2);
+
+    alert('display data');
+    //Creating variables that are going to display
+    const showData = document.createElement('div');
+    const showRevenue = document.createElement('p');
+    const showNetIncome = document.createElement('p');
+    const showEquity = document.createElement('p');
+    const showCashFlow = document.createElement('p');
+
+    showRevenue.innerHTML = 'Revenues Growth: ' + revenueGrowth;
+    showNetIncome.innerHTML = 'Net Income Growth: ' + netIncomeGrowth;
+    showEquity.innerHTML = 'Equity Growth: ' + equityGrowth;
+    showCashFlow.innerHTML = 'Cash Flow Growth: ' + cashFlowGrowth;
+
+
+    document.body.appendChild(showData);
+
+    showData.appendChild(showRevenue);
+    showData.appendChild(showNetIncome);
+    showData.appendChild(showEquity);
+    showData.appendChild(showCashFlow);
+
+    showData.style.fontFamily = 'sans-serif';
+    showData.style.display = 'flex';
+    showData.style.flexDirection = 'column';
+    showData.style.justifyContent = 'center';
+    showData.style.alignItems = 'center';
+
+
+    showData.style.margin = '1.8rem 2rem';
+    showRevenue.style.margin = '1rem';
+    showNetIncome.style.margin = '1rem';
+    showEquity.style.margin = '1rem';
+    showCashFlow.style.margin = '1rem';
+
+
+    showRevenue.style.fontSize = '1.2rem';
+    showNetIncome.style.fontSize = '1.2rem';
+    showEquity.style.fontSize = '1.2rem';
+    showCashFlow.style.fontSize = '1.2rem';
+
+    if(revenueGrowth >= 15 && netIncomeGrowth >= 15 && equityGrowth >= 15 && cashFlowGrowth >= 15) {
+        const showResult = document.createElement('div');
+        document.body.appendChild(showResult);
+        showResult.innerHTML = 'Following the Phil Town rule the 4 values should be bigger than 15% and in this case it is so it passed the test, and the company that you are evaluating has a MOAT';
+        showResult.style.textAlign = 'center';
+        showResult.style.fontSize = '1.2rem';
+        showResult.style.marginBottom = '1.4rem';
+        showResult.style.fontWeight = 'bold';
+        var height = document.body.scrollHeight;
+        window.scroll(0, height);
+    }
+    else {
+        const showResult = document.createElement('div');
+        document.body.appendChild(showResult);
+        showResult.innerHTML = 'Your company does not have a MOAT go search for another one';
+        showResult.style.textAlign = 'center';
+        showResult.style.fontSize = '1.2rem';
+        showResult.style.marginBottom = '1.4rem';
+        showResult.style.fontWeight = 'bold';
+        var height = document.body.scrollHeight;
+        window.scroll(0, height);
+    }
+
 }
 
