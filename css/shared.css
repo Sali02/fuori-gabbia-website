@@ -113,11 +113,6 @@ a {
   transition: 0.4s;
 }
 
-
-.mobile-nav__items {
-  
-}
-
 .mobile-nav.active {
   left: 0;
 }
