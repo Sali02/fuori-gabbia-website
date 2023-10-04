@@ -68,3 +68,17 @@ div .imag {
   justify-content: center;
   align-items: center;
 }
+
+@media only screen and (min-width: 1000px) {
+  .container-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .container-options__ {
+    margin: 1rem;
+  }
+}

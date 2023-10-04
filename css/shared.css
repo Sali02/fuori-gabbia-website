@@ -124,3 +124,35 @@ a {
 .mobile-nav__item a {
   font-size: 1.5rem;
 }
+
+@media only screen and (min-width : 1000px)
+{
+  .toggle-button {
+    display: none;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    background-color: rgb(12, 150, 150);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 90%;
+    z-index: 100;
+  }
+
+  .item {
+    margin: 1rem 2.4rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+  
+  .image-of-link {
+    position: absolute;
+    top: -3.5%;
+  }
+}
