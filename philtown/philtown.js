@@ -7,7 +7,7 @@ button.addEventListener('click', getData);
 
 async function getData() {
 
-    alert('getdata')
+    
     //In this function I send a fetch and get the data
 
     var apiKey = 'd59700f7597b82cb0fef69669f48b8ec';
@@ -24,13 +24,13 @@ async function getData() {
     const cashFlow = await responseCashFlow.json();
     console.log(incomeStatement, balanceSheet, cashFlow);
     
-    storeData(incomeStatement, balanceSheet, cashFlow);
+    storeData(incomeStatement, balanceSheet, cashFlow, stockTicker);
 }
 
 
 
-function storeData(incomeStatement, balanceSheetStatement, cashFlowStatement) {
-    alert('store data');
+function storeData(incomeStatement, balanceSheetStatement, cashFlowStatement, stockTicker) {
+    
     //Created arrays to store the values that i'm interested in
 
     let fatturato = new Array();
@@ -60,17 +60,17 @@ function storeData(incomeStatement, balanceSheetStatement, cashFlowStatement) {
         equity[i] = assetTotali[i] - passivitaTotali[i];
     }
     
-    calcolaPercentuale(fatturato, utile, equity, cashFlow);
+    calcolaPercentuale(fatturato, utile, equity, cashFlow, stockTicker);
 }
 
 
-function calcolaPercentuale(fatturato, utile, equity, cashFlow) {
+function calcolaPercentuale(fatturato, utile, equity, cashFlow, stockTicker) {
 
     //This function calculate the percentages of increasing or decreasin year over year
     // !! i = 0 is the year 2022, and then goes down !!
 
     //New arrays where to store the percentages
-    alert('calcola percentuale');
+    
     var revenuePercentuale = new Array();
     var netIncomePercentuale = new Array();
     var equityPercentuale = new Array();
@@ -116,7 +116,7 @@ function calcolaPercentuale(fatturato, utile, equity, cashFlow) {
         cashFlowGrowth += cashFlowPercentuale[i];
 
     }
-    alert('calcola percentuale 2');
+    
     revenueGrowth = revenueGrowth / revenuePercentuale.length;
     netIncomeGrowth = netIncomeGrowth / netIncomePercentuale.length;
     equityGrowth = equityGrowth / equityPercentuale.length;
@@ -127,32 +127,35 @@ function calcolaPercentuale(fatturato, utile, equity, cashFlow) {
     console.log("is the avarage growth of the equity more than 15%? " + equityGrowth);
     console.log("is the avarage growth of the cash flow more than 15%? " + cashFlowGrowth);
 
-    displayData(revenueGrowth, netIncomeGrowth, equityGrowth, cashFlowGrowth);
+    displayData(revenueGrowth, netIncomeGrowth, equityGrowth, cashFlowGrowth, stockTicker);
 }
 
-function displayData(revenueGrowth, netIncomeGrowth, equityGrowth, cashFlowGrowth) {
+function displayData(revenueGrowth, netIncomeGrowth, equityGrowth, cashFlowGrowth, stockTicker) {
     
     revenueGrowth = revenueGrowth.toFixed(2);
     netIncomeGrowth = netIncomeGrowth.toFixed(2);
     equityGrowth = equityGrowth.toFixed(2);
     cashFlowGrowth = cashFlowGrowth.toFixed(2);
 
-    alert('display data');
+    
     //Creating variables that are going to display
     const showData = document.createElement('div');
     const showRevenue = document.createElement('p');
     const showNetIncome = document.createElement('p');
     const showEquity = document.createElement('p');
     const showCashFlow = document.createElement('p');
+    const ticker = document.createElement('p');
 
-    showRevenue.innerHTML = 'Revenues Growth: ' + revenueGrowth;
-    showNetIncome.innerHTML = 'Net Income Growth: ' + netIncomeGrowth;
-    showEquity.innerHTML = 'Equity Growth: ' + equityGrowth;
-    showCashFlow.innerHTML = 'Cash Flow Growth: ' + cashFlowGrowth;
+    ticker.innerHTML = 'The company that you are evaluating is: ' + stockTicker;
+    showRevenue.innerHTML = 'Revenues Growth: ' + revenueGrowth + "%";
+    showNetIncome.innerHTML = 'Net Income Growth: ' + netIncomeGrowth + "%";
+    showEquity.innerHTML = 'Equity Growth: ' + equityGrowth + "%";
+    showCashFlow.innerHTML = 'Cash Flow Growth: ' + cashFlowGrowth + "%";
 
 
     document.body.appendChild(showData);
 
+    showData.appendChild(ticker);
     showData.appendChild(showRevenue);
     showData.appendChild(showNetIncome);
     showData.appendChild(showEquity);
@@ -166,6 +169,9 @@ function displayData(revenueGrowth, netIncomeGrowth, equityGrowth, cashFlowGrowt
 
 
     showData.style.margin = '1.8rem 2rem';
+    ticker.style.margin = '1rem';
+    ticker.style.fontWeight = 'bold';
+    ticker.style.fontSize = '1.8rem';
     showRevenue.style.margin = '1rem';
     showNetIncome.style.margin = '1rem';
     showEquity.style.margin = '1rem';
@@ -191,7 +197,7 @@ function displayData(revenueGrowth, netIncomeGrowth, equityGrowth, cashFlowGrowt
     else {
         const showResult = document.createElement('div');
         document.body.appendChild(showResult);
-        showResult.innerHTML = 'Your company does not have a MOAT go search for another one';
+        showResult.innerHTML = 'Your company does not have a MOAT go search for another one, because the values are under 15%';
         showResult.style.textAlign = 'center';
         showResult.style.fontSize = '1.2rem';
         showResult.style.marginBottom = '1.4rem';
